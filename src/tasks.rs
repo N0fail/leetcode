@@ -28,6 +28,7 @@ pub mod task0833;
 pub mod task0806;
 pub mod task0879;
 pub mod task0387;
+pub mod task1529;
 
 pub trait Solver{
     fn read_inputs() -> Self;
