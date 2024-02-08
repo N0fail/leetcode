@@ -5,7 +5,7 @@ pub struct Solution{
     solution: Vec<i32>,
 }
 
-pub fn smaller_numbers_than_current(mut nums: Vec<i32>) -> Vec<i32> {
+pub fn smaller_numbers_than_current(nums: Vec<i32>) -> Vec<i32> {
     let mut tmp: Vec<_> = nums.clone().into_iter().enumerate().collect();
     tmp.sort_by(|a, b| a.1.cmp(&b.1));
     let mut count = 0;
