@@ -1,5 +1,5 @@
 use leetcode::tasks::Solver;
-use leetcode::tasks::task1456::Solution;
+use leetcode::tasks::current::Solution;
 
 fn main() {
     Solution::read_inputs().solve();
