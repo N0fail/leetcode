@@ -6,6 +6,7 @@ use std::path::Path;
 pub mod contest9;
 pub mod contest6;
 pub mod contest8;
+mod contest7;
 
 pub use contest8 as current;
 
