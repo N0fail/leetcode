@@ -1,7 +1,7 @@
 use super::Solver;
 
 #[derive(Debug)]
-pub struct Solution{
+pub struct Solution {
     nums: Vec<i32>,
     solution: Vec<i32>,
 }
@@ -49,7 +49,7 @@ pub fn rearrange_array(nums: Vec<i32>) -> Vec<i32> {
     // 54 ms, one pass
     let mut pos_i = 0;
     let mut neg_i = 1;
-    let mut res = vec![0;nums.len()];
+    let mut res = vec![0; nums.len()];
     for el in nums {
         if el > 0 {
             res[pos_i] = el;
@@ -65,7 +65,7 @@ pub fn rearrange_array(nums: Vec<i32>) -> Vec<i32> {
 impl Solver for Solution {
     fn read_inputs() -> Self {
         return Solution {
-            nums: vec![3,1,-2,-5,2,-4],
+            nums: vec![3, 1, -2, -5, 2, -4],
             solution: vec![],
         };
     }

@@ -1,7 +1,7 @@
 use super::Solver;
 
 #[derive(Debug)]
-pub struct Solution{
+pub struct Solution {
     row_index: i32,
     solution: Vec<i32>,
 }
@@ -9,10 +9,12 @@ pub struct Solution{
 pub fn get_row(row_index: i32) -> Vec<i32> {
     let row_index = row_index as usize;
     let mut prev_row = vec![1];
-    for row_num in 1..row_index+1 {
+    for row_num in 1..row_index + 1 {
         let mut new_row = Vec::with_capacity(row_num);
         new_row.push(1);
-        prev_row.windows(2).for_each(|lr| new_row.push(lr[0] + lr[1]));
+        prev_row
+            .windows(2)
+            .for_each(|lr| new_row.push(lr[0] + lr[1]));
         new_row.push(1);
         prev_row = new_row;
     }

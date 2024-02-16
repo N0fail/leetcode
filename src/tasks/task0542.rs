@@ -1,8 +1,8 @@
-use std::cmp::min;
 use super::Solver;
+use std::cmp::min;
 
 #[derive(Debug)]
-pub struct Solution{
+pub struct Solution {
     input: Vec<Vec<i32>>,
     solution: Vec<Vec<i32>>,
 }
@@ -17,16 +17,12 @@ fn update_matrix(mat: &Vec<Vec<i32>>) -> Vec<Vec<i32>> {
     for (i, row) in mat.iter().enumerate() {
         for (j, &el) in row.iter().enumerate() {
             if el == 0 {
-                queue[queue_tail] = (i,j);
+                queue[queue_tail] = (i, j);
                 queue_tail += 1;
             }
         }
     }
-    let neighbors: [(isize, isize); 4] = [
-                 (-1, 0),
-        (0, -1),         (0, 1),
-                 (1, 0),
-    ];
+    let neighbors: [(isize, isize); 4] = [(-1, 0), (0, -1), (0, 1), (1, 0)];
 
     while queue_tail > queue_head {
         let current = queue[queue_head];
@@ -59,7 +55,7 @@ fn update_matrix(mat: &Vec<Vec<i32>>) -> Vec<Vec<i32>> {
             }
 
             if result[i][j] & VISITED == 0 {
-                queue[queue_tail] = (i,j);
+                queue[queue_tail] = (i, j);
                 queue_tail += 1;
             } else {
                 min_distance = min(result[i][j], min_distance);
@@ -72,25 +68,24 @@ fn update_matrix(mat: &Vec<Vec<i32>>) -> Vec<Vec<i32>> {
         }
     }
 
-    for row in & mut result {
+    for row in &mut result {
         for j in row {
             *j = *j & !VISITED;
         }
     }
 
-
     return result;
 }
 
-impl Solver for Solution  {
+impl Solver for Solution {
     fn read_inputs() -> Self {
-        return Solution{
+        return Solution {
             input: vec![
-                vec![0,1,0,1,1],
-                vec![1,1,0,0,1],
-                vec![0,0,0,1,0],
-                vec![1,0,1,1,1],
-                vec![1,0,0,0,1],
+                vec![0, 1, 0, 1, 1],
+                vec![1, 1, 0, 0, 1],
+                vec![0, 0, 0, 1, 0],
+                vec![1, 0, 1, 1, 1],
+                vec![1, 0, 0, 0, 1],
             ],
             solution: vec![],
         };

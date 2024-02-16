@@ -1,6 +1,6 @@
 use super::Solver;
 #[derive(Debug)]
-pub struct Solution{
+pub struct Solution {
     nums: Vec<i32>,
     solution: Vec<i32>,
 }
@@ -19,7 +19,8 @@ pub fn largest_divisible_subset(mut nums: Vec<i32>) -> Vec<i32> {
         tmp.push(num);
         result.push((num, tmp));
     }
-    result.into_iter()
+    result
+        .into_iter()
         .map(|(_, dividers)| dividers)
         .max_by(|a, b| a.len().cmp(&b.len()))
         .unwrap()
@@ -28,7 +29,7 @@ pub fn largest_divisible_subset(mut nums: Vec<i32>) -> Vec<i32> {
 impl Solver for Solution {
     fn read_inputs() -> Self {
         return Solution {
-            nums: vec![1,2,4,8,9,72],
+            nums: vec![1, 2, 4, 8, 9, 72],
             solution: vec![],
         };
     }

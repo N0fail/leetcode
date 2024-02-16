@@ -1,6 +1,6 @@
 use super::Solver;
 #[derive(Debug)]
-pub struct Solution{
+pub struct Solution {
     nums: Vec<i32>,
     k: i32,
     solution: i32,
@@ -32,7 +32,7 @@ pub fn maximum_score(nums: Vec<i32>, k: i32) -> i32 {
         }
     }
 
-    for idx in (0..arr.len()-1).rev() {
+    for idx in (0..arr.len() - 1).rev() {
         let mut next_max_idx = idx + 1;
         loop {
             if arr[idx] > arr[next_max_idx] {
@@ -62,7 +62,7 @@ pub fn maximum_score(nums: Vec<i32>, k: i32) -> i32 {
 impl Solver for Solution {
     fn read_inputs() -> Self {
         return Solution {
-            nums: vec![1,4,3,7,4,5],
+            nums: vec![1, 4, 3, 7, 4, 5],
             k: 3,
             solution: -1,
         };

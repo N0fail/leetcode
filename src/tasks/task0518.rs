@@ -1,6 +1,6 @@
 use super::Solver;
 #[derive(Debug)]
-pub struct Solution{
+pub struct Solution {
     coins: Vec<i32>,
     amount: i32,
     solution: i32,

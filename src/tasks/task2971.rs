@@ -1,8 +1,8 @@
-use std::collections::BinaryHeap;
 use super::Solver;
+use std::collections::BinaryHeap;
 
 #[derive(Debug)]
-pub struct Solution{
+pub struct Solution {
     nums: Vec<i32>,
     solution: i64,
 }
@@ -54,7 +54,7 @@ pub fn largest_perimeter(nums: Vec<i32>) -> i64 {
 impl Solver for Solution {
     fn read_inputs() -> Self {
         return Solution {
-            nums: vec![1,3,2],
+            nums: vec![1, 3, 2],
             solution: -1,
         };
     }

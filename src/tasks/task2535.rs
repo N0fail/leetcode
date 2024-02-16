@@ -1,7 +1,7 @@
 use super::Solver;
 
 #[derive(Debug)]
-pub struct Solution{
+pub struct Solution {
     nums: Vec<i32>,
     solution: i32,
 }
@@ -21,7 +21,7 @@ pub fn difference_of_sum(nums: Vec<i32>) -> i32 {
 impl Solver for Solution {
     fn read_inputs() -> Self {
         return Solution {
-            nums: vec![1,15,6,3],
+            nums: vec![1, 15, 6, 3],
             solution: -1,
         };
     }

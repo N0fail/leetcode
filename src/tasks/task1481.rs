@@ -1,8 +1,8 @@
-use std::collections::HashMap;
 use super::Solver;
+use std::collections::HashMap;
 
 #[derive(Debug)]
-pub struct Solution{
+pub struct Solution {
     arr: Vec<i32>,
     k: i32,
     solution: i32,
@@ -115,17 +115,26 @@ pub fn find_least_num_of_unique_ints(arr: Vec<i32>, mut k: i32) -> i32 {
     // 13 ms
     let mut counts: HashMap<i32, i32> = HashMap::new();
     for num in arr {
-        counts.entry(num).and_modify(|count| *count+=1).or_insert(1);
+        counts
+            .entry(num)
+            .and_modify(|count| *count += 1)
+            .or_insert(1);
     }
     let mut counts_vec = counts.into_values().collect::<Vec<_>>();
     counts_vec.sort_unstable();
-    counts_vec.into_iter().skip_while(|num| {k-=num; k >= 0}).count() as i32
+    counts_vec
+        .into_iter()
+        .skip_while(|num| {
+            k -= num;
+            k >= 0
+        })
+        .count() as i32
 }
 
 impl Solver for Solution {
     fn read_inputs() -> Self {
         return Solution {
-            arr: vec![4,3,1,1,3,3,2],
+            arr: vec![4, 3, 1, 1, 3, 3, 2],
             k: 3,
             solution: -1,
         };

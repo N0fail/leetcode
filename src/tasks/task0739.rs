@@ -1,11 +1,10 @@
 use super::Solver;
 
 #[derive(Debug)]
-pub struct Solution{
+pub struct Solution {
     temperatures: Vec<i32>,
     solution: Vec<i32>,
 }
-
 
 // const RANGE: (i32, i32) = (30, 101);
 // // LOL it passed
@@ -43,7 +42,7 @@ pub fn daily_temperatures(mut temperatures: Vec<i32>) -> Vec<i32> {
         let temp = temperatures[idx];
         while let Some(el) = stack.last() {
             if el.1 >= temp {
-                break
+                break;
             }
             temperatures[el.0] = (idx - el.0) as i32;
             stack.pop();
@@ -55,13 +54,13 @@ pub fn daily_temperatures(mut temperatures: Vec<i32>) -> Vec<i32> {
         temperatures[el.0] = 0;
     }
 
-    return temperatures
+    return temperatures;
 }
 
 impl Solver for Solution {
     fn read_inputs() -> Self {
         return Solution {
-            temperatures: vec![73,74,75,71,69,72,76,73],
+            temperatures: vec![73, 74, 75, 71, 69, 72, 76, 73],
             solution: vec![],
         };
     }

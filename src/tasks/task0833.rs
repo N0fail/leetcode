@@ -1,7 +1,7 @@
 use super::Solver;
 
 #[derive(Debug)]
-pub struct Solution{
+pub struct Solution {
     s: String,
     indices: Vec<i32>,
     sources: Vec<String>,
@@ -9,7 +9,12 @@ pub struct Solution{
     solution: String,
 }
 
-pub fn find_replace_string(s: String, indices: Vec<i32>, sources: Vec<String>, targets: Vec<String>) -> String {
+pub fn find_replace_string(
+    s: String,
+    indices: Vec<i32>,
+    sources: Vec<String>,
+    targets: Vec<String>,
+) -> String {
     // this is accepted, but incorrect
     // let mut commands = indices
     //     .into_iter()
@@ -33,14 +38,18 @@ pub fn find_replace_string(s: String, indices: Vec<i32>, sources: Vec<String>, t
     let s_chars = s.chars();
     let mut result: Vec<String> = s_chars.clone().map(|x| x.to_string()).collect();
     let s_chars: Vec<char> = s_chars.collect();
-    indices.into_iter()
+    indices
+        .into_iter()
         .zip(sources.into_iter())
         .zip(targets.into_iter())
         .for_each(|((idx, source), target)| {
             if source.len() <= s_chars[idx as usize..].len()
-                &&source.chars().into_iter()
-                .zip(s_chars[idx as usize..].iter())
-                .all(|(t,sc)| t == *sc) {
+                && source
+                    .chars()
+                    .into_iter()
+                    .zip(s_chars[idx as usize..].iter())
+                    .all(|(t, sc)| t == *sc)
+            {
                 result[idx as usize] = target;
                 for i in 1..source.len() {
                     result[idx as usize + i] = "".to_string()
@@ -64,11 +73,10 @@ impl Solver for Solution {
             // sources: vec!["cdef","bc"].iter().map(|el| el.to_string()).collect(),
             // targets: vec!["f","fe"].iter().map(|el| el.to_string()).collect(),
             // solution: "".to_string(),
-
             s: "ab".to_string(),
             indices: vec![1, 0],
-            sources: vec!["b","abb"].iter().map(|el| el.to_string()).collect(),
-            targets: vec!["bb","bbb"].iter().map(|el| el.to_string()).collect(),
+            sources: vec!["b", "abb"].iter().map(|el| el.to_string()).collect(),
+            targets: vec!["bb", "bbb"].iter().map(|el| el.to_string()).collect(),
             solution: "".to_string(),
         };
     }

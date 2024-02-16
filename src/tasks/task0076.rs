@@ -1,7 +1,7 @@
 use super::Solver;
 
 #[derive(Debug)]
-pub struct Solution{
+pub struct Solution {
     s: String,
     t: String,
     solution: String,
@@ -9,15 +9,15 @@ pub struct Solution{
 
 #[derive(Debug, Clone)]
 struct CharsCount {
-    count: [usize; 52]
+    count: [usize; 52],
 }
 
 impl CharsCount {
     fn char_to_idx(c: u8) -> usize {
         if c < b'a' {
-            return (c - b'A') as usize
+            return (c - b'A') as usize;
         }
-        return (c - b'a' + 26) as usize
+        return (c - b'a' + 26) as usize;
     }
 
     fn add(&mut self, b: u8) {
@@ -37,33 +37,31 @@ impl CharsCount {
         self.count[idx]
     }
 
-    fn contains_b(&self, b: u8) -> bool{
+    fn contains_b(&self, b: u8) -> bool {
         let idx = CharsCount::char_to_idx(b);
         if self.count[idx] == 0 {
             return false;
         }
-        return true
+        return true;
     }
 
     fn contains(&self, other: &Self) -> bool {
-        self.count.iter().zip(other.count.iter()).all(|(my, other)| *my >= *other)
+        self.count
+            .iter()
+            .zip(other.count.iter())
+            .all(|(my, other)| *my >= *other)
     }
 }
 
-
 pub fn min_window(s: String, t: String) -> String {
-    let mut cur = CharsCount{
-        count: [0; 52]
-    };
+    let mut cur = CharsCount { count: [0; 52] };
     let s_bytes: Vec<u8> = s.bytes().collect();
 
-    let mut target = CharsCount{
-        count: [0; 52]
-    };
+    let mut target = CharsCount { count: [0; 52] };
     t.bytes().for_each(|b| target.add(b));
 
     const NULL: usize = 1 << 30;
-    let mut solution: (usize, usize) = (0,NULL);
+    let mut solution: (usize, usize) = (0, NULL);
 
     let mut prev_result = solution;
     for right_idx in 0..s.len() {
@@ -81,11 +79,11 @@ pub fn min_window(s: String, t: String) -> String {
                         let cur_count = cur.count_b(b);
                         let t_count = target.count_b(b);
                         if cur_count < t_count {
-                            break
+                            break;
                         }
                         new_left = left_idx;
                         if cur_count == t_count {
-                            break
+                            break;
                         }
                         cur.remove(b);
                     }
@@ -99,10 +97,10 @@ pub fn min_window(s: String, t: String) -> String {
     }
 
     if solution.1 == NULL {
-        return "".to_string()
+        return "".to_string();
     }
 
-    String::from(std::str::from_utf8(&s_bytes[solution.0..solution.1+1]).unwrap())
+    String::from(std::str::from_utf8(&s_bytes[solution.0..solution.1 + 1]).unwrap())
 }
 
 impl Solver for Solution {

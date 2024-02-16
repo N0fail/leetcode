@@ -1,6 +1,6 @@
 use super::Solver;
 #[derive(Debug)]
-pub struct Solution{
+pub struct Solution {
     routes: Vec<Vec<i32>>,
     source: i32,
     target: i32,
@@ -117,9 +117,14 @@ pub fn num_buses_to_destination(routes: Vec<Vec<i32>>, source: i32, target: i32)
     loop {
         let mut is_changed = false;
         for route in routes.iter() {
-            let mut min_d = route.iter().copied().map(|stop| d[stop as usize]).min().unwrap();
+            let mut min_d = route
+                .iter()
+                .copied()
+                .map(|stop| d[stop as usize])
+                .min()
+                .unwrap();
             if min_d == UNREACHABLE {
-                continue
+                continue;
             }
             min_d += 1;
             for stop in route.iter().copied() {
@@ -130,7 +135,7 @@ pub fn num_buses_to_destination(routes: Vec<Vec<i32>>, source: i32, target: i32)
             }
         }
         if !is_changed {
-            break
+            break;
         }
     }
 
@@ -144,7 +149,13 @@ pub fn num_buses_to_destination(routes: Vec<Vec<i32>>, source: i32, target: i32)
 impl Solver for Solution {
     fn read_inputs() -> Self {
         return Solution {
-            routes: vec![vec![7,12],vec![4,5,15],vec![6],vec![15,19],vec![9,12,13]],
+            routes: vec![
+                vec![7, 12],
+                vec![4, 5, 15],
+                vec![6],
+                vec![15, 19],
+                vec![9, 12, 13],
+            ],
             source: 15,
             target: 12,
             solution: -1,

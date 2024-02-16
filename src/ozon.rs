@@ -3,14 +3,14 @@ use std::fs::File;
 use std::io::prelude::*;
 use std::path::Path;
 
-pub mod contest9;
 pub mod contest6;
-pub mod contest8;
 mod contest7;
+pub mod contest8;
+pub mod contest9;
 
 pub use contest8 as current;
 
-pub trait Solver{
+pub trait Solver {
     fn get_input_filename() -> &'static str {
         "input.txt"
     }
@@ -37,16 +37,36 @@ pub trait Solver{
             Ok(file) => file,
         };
 
-        for (test_num, (output, expected)) in
-            read_to_string(Self::get_output_filename()).unwrap().lines()
-            .zip(read_to_string(Self::get_expected_filename()).unwrap().lines())
-            .enumerate(){
+        for (test_num, (output, expected)) in read_to_string(Self::get_output_filename())
+            .unwrap()
+            .lines()
+            .zip(
+                read_to_string(Self::get_expected_filename())
+                    .unwrap()
+                    .lines(),
+            )
+            .enumerate()
+        {
             if output != expected {
-                compare_file.write(format!("ERROR: OUTPUT: {} EXPECTED: {}, test #{}\n test:{}\n", output, expected, test_num, self.dump_example(test_num)).as_bytes()).unwrap();
+                compare_file
+                    .write(
+                        format!(
+                            "ERROR: OUTPUT: {} EXPECTED: {}, test #{}\n test:{}\n",
+                            output,
+                            expected,
+                            test_num,
+                            self.dump_example(test_num)
+                        )
+                        .as_bytes(),
+                    )
+                    .unwrap();
             } else {
-                compare_file.write(format!("OK: {} == {}, test #{}\n", output, expected, test_num).as_bytes()).unwrap();
+                compare_file
+                    .write(
+                        format!("OK: {} == {}, test #{}\n", output, expected, test_num).as_bytes(),
+                    )
+                    .unwrap();
             }
         }
-
     }
 }

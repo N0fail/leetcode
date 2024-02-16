@@ -1,6 +1,6 @@
 use super::Solver;
 #[derive(Debug)]
-pub struct Solution{
+pub struct Solution {
     a: String,
     b: String,
     solution: i32,
@@ -36,6 +36,6 @@ impl Solver for Solution {
 
     fn solve(mut self) {
         self.solution = find_lu_slength(self.a, self.b);
-        println!("{}",self.solution);
+        println!("{}", self.solution);
     }
 }

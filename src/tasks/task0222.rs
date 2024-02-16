@@ -1,20 +1,23 @@
 use super::Solver;
-use super::{TreeNode, build_tree};
-use std::rc::Rc;
+use super::{build_tree, TreeNode};
 use std::cell::RefCell;
+use std::rc::Rc;
 
 #[derive(Debug)]
-pub struct Solution{
+pub struct Solution {
     root: Option<Rc<RefCell<TreeNode>>>,
     solution: i32,
 }
 
-
 impl Solution {
-    pub fn is_schema_valid(root: Option<Rc<RefCell<TreeNode>>>, schema: i32, mut height: usize) -> bool {
+    pub fn is_schema_valid(
+        root: Option<Rc<RefCell<TreeNode>>>,
+        schema: i32,
+        mut height: usize,
+    ) -> bool {
         if let Some(r) = root {
             if height == 0 {
-                return true
+                return true;
             }
 
             height -= 1;
@@ -24,19 +27,19 @@ impl Solution {
             }
             return Solution::is_schema_valid(r.borrow().left.clone(), schema, height);
         }
-        return false
+        return false;
     }
 
     pub fn count_height(root: Option<Rc<RefCell<TreeNode>>>) -> usize {
         if let Some(r) = root {
-            return 1 + Solution::count_height(r.borrow().left.clone())
+            return 1 + Solution::count_height(r.borrow().left.clone());
         }
-        return 0
+        return 0;
     }
 
     pub fn count_nodes(root: Option<Rc<RefCell<TreeNode>>>) -> i32 {
         if root.is_none() {
-            return 0
+            return 0;
         }
         let mut height = Solution::count_height(root.clone());
         height -= 1;
@@ -50,13 +53,13 @@ impl Solution {
                 r_schema = mid - 1;
             }
         }
-        return l_schema + (1 << height)
+        return l_schema + (1 << height);
     }
 }
 
 impl Solver for Solution {
     fn read_inputs() -> Self {
-        let input = vec![1;529872];
+        let input = vec![1; 529872];
         return Solution {
             root: build_tree(&input, 0),
             solution: 0,

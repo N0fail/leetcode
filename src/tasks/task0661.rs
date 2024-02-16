@@ -1,7 +1,7 @@
 use super::Solver;
 
 #[derive(Debug)]
-pub struct Solution{
+pub struct Solution {
     img: Vec<Vec<i32>>,
     solution: Vec<Vec<i32>>,
 }
@@ -12,22 +12,22 @@ pub fn image_smoother(mut img: Vec<Vec<i32>>) -> Vec<Vec<i32>> {
     for i in 0..n {
         let mut prev = 0;
         let row = &mut img[i];
-        for j in 0..m-1 {
+        for j in 0..m - 1 {
             let save = row[j];
-            row[j] += row[j+1] + prev;
+            row[j] += row[j + 1] + prev;
             prev = save;
         }
-        img[i][m-1] += prev;
+        img[i][m - 1] += prev;
     }
 
     for j in 0..m {
         let mut prev = 0;
-        for i in 0..n-1{
+        for i in 0..n - 1 {
             let save = img[i][j];
-            img[i][j] += img[i+1][j] + prev;
+            img[i][j] += img[i + 1][j] + prev;
             prev = save;
         }
-        img[n-1][j] += prev;
+        img[n - 1][j] += prev;
     }
 
     if n != 1 && m != 1 {
@@ -48,16 +48,18 @@ pub fn image_smoother(mut img: Vec<Vec<i32>>) -> Vec<Vec<i32>> {
                 img[i][j] /= 9;
             }
         }
-    } else if n != 1 { // m == 1
+    } else if n != 1 {
+        // m == 1
         img[0][0] /= 2;
-        img[n-1][0] /= 2;
-        for i in 1..n-1{
+        img[n - 1][0] /= 2;
+        for i in 1..n - 1 {
             img[i][0] /= 3;
         }
-    } else if m != 1 { // n == 1
+    } else if m != 1 {
+        // n == 1
         img[0][0] /= 2;
-        img[0][m-1] /= 2;
-        for j in 1..m-1{
+        img[0][m - 1] /= 2;
+        for j in 1..m - 1 {
             img[0][j] /= 3;
         }
     }
@@ -68,7 +70,10 @@ pub fn image_smoother(mut img: Vec<Vec<i32>>) -> Vec<Vec<i32>> {
 impl Solver for Solution {
     fn read_inputs() -> Self {
         return Solution {
-            img: [[1,1,1],[1,0,1],[1,1,1]].into_iter().map(|x| Vec::from(x)).collect(),
+            img: [[1, 1, 1], [1, 0, 1], [1, 1, 1]]
+                .into_iter()
+                .map(|x| Vec::from(x))
+                .collect(),
             solution: vec![],
         };
     }

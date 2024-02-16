@@ -5,7 +5,7 @@ use std::io::prelude::*;
 use std::path::Path;
 
 #[derive(Debug)]
-pub struct Solution{
+pub struct Solution {
     inputs: Vec<Vec<i32>>,
     results: Vec<Vec<i32>>,
 }
@@ -13,15 +13,15 @@ pub struct Solution{
 pub fn k_saw(arr: &Vec<i32>) -> Vec<i32> {
     let mut k_streak_at_idx = vec![(0, 0); arr.len()];
     let mut center = 1;
-    while center < arr.len()-1 {
+    while center < arr.len() - 1 {
         let mut k = 1;
-        while arr[center-k+1] > arr[center-k] && arr[center+k-1] > arr[center+k] {
+        while arr[center - k + 1] > arr[center - k] && arr[center + k - 1] > arr[center + k] {
             k += 1;
             if k + center >= arr.len() {
-                break
+                break;
             }
             if k > center {
-                break
+                break;
             }
         }
         k -= 1;
@@ -55,8 +55,19 @@ pub fn k_saw(arr: &Vec<i32>) -> Vec<i32> {
 impl Solver for Solution {
     fn read_inputs() -> Self {
         let mut inputs: Vec<Vec<i32>> = Vec::new();
-        for (_, line) in read_to_string(Self::get_input_filename()).unwrap().lines().skip(1).enumerate().filter(|(idx,_)| idx % 2 != 0) {
-            inputs.push(line.to_string().split(" ").map(|x| x.parse().unwrap()).collect())
+        for (_, line) in read_to_string(Self::get_input_filename())
+            .unwrap()
+            .lines()
+            .skip(1)
+            .enumerate()
+            .filter(|(idx, _)| idx % 2 != 0)
+        {
+            inputs.push(
+                line.to_string()
+                    .split(" ")
+                    .map(|x| x.parse().unwrap())
+                    .collect(),
+            )
         }
 
         return Solution {
@@ -82,12 +93,25 @@ impl Solver for Solution {
         };
 
         for result in &self.results {
-            output_file.write(result.iter().map(|x| x.to_string()).collect::<Vec<_>>().join(" ").as_bytes()).unwrap();
+            output_file
+                .write(
+                    result
+                        .iter()
+                        .map(|x| x.to_string())
+                        .collect::<Vec<_>>()
+                        .join(" ")
+                        .as_bytes(),
+                )
+                .unwrap();
             output_file.write("\n".as_bytes()).unwrap();
         }
     }
 
     fn dump_example(&self, idx: usize) -> String {
-        return self.inputs[idx].iter().map(|x| x.to_string()).collect::<Vec<_>>().join(" ")
+        return self.inputs[idx]
+            .iter()
+            .map(|x| x.to_string())
+            .collect::<Vec<_>>()
+            .join(" ");
     }
 }

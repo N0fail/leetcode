@@ -1,11 +1,11 @@
 use super::Solver;
-use std::rc::Rc;
+use super::{build_tree, TreeNode, NULL};
 use std::cell::RefCell;
 use std::ops::Deref;
-use super::{TreeNode, build_tree, NULL};
+use std::rc::Rc;
 
 #[derive(Debug)]
-pub struct Solution{
+pub struct Solution {
     root: Option<Rc<RefCell<TreeNode>>>,
     solution: Option<Rc<RefCell<TreeNode>>>,
 }
@@ -21,14 +21,16 @@ impl Solution {
     }
 
     pub fn convert_bst(root: Option<Rc<RefCell<TreeNode>>>) -> Option<Rc<RefCell<TreeNode>>> {
-        Self::dfs(&root, & mut 0);
-        return root
+        Self::dfs(&root, &mut 0);
+        return root;
     }
 }
 
 impl Solver for Solution {
     fn read_inputs() -> Self {
-        let input = vec![4,1,6,0,2,5,7,NULL,NULL,NULL,3,NULL,NULL,NULL,8];
+        let input = vec![
+            4, 1, 6, 0, 2, 5, 7, NULL, NULL, NULL, 3, NULL, NULL, NULL, 8,
+        ];
         return Solution {
             root: build_tree(&input, 0),
             solution: None,
@@ -38,7 +40,7 @@ impl Solver for Solution {
     fn solve(mut self) {
         self.solution = Solution::convert_bst(self.root);
         if let Some(solution) = self.solution {
-            println!("{}",solution.borrow().deref());
+            println!("{}", solution.borrow().deref());
         }
     }
 }

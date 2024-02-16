@@ -9,7 +9,7 @@ enum Command {
 }
 
 #[derive(Debug)]
-enum CommandResult{
+enum CommandResult {
     Push,
     Pop(i32),
     Peek(i32),
@@ -17,7 +17,7 @@ enum CommandResult{
 }
 
 #[derive(Debug)]
-pub struct Solution{
+pub struct Solution {
     input: Vec<Command>,
     solution: Vec<CommandResult>,
 }
@@ -28,9 +28,8 @@ struct MyQueue {
 }
 
 impl MyQueue {
-
     fn new() -> Self {
-        MyQueue{
+        MyQueue {
             read_stack: vec![],
             write_stack: vec![],
         }
@@ -42,7 +41,7 @@ impl MyQueue {
 
     fn transfer_if_needed(&mut self) {
         if self.read_stack.is_empty() {
-            loop{
+            loop {
                 let x = self.write_stack.pop();
                 match x {
                     None => break,
@@ -54,16 +53,16 @@ impl MyQueue {
 
     fn pop(&mut self) -> i32 {
         self.transfer_if_needed();
-        return self.read_stack.pop().unwrap()
+        return self.read_stack.pop().unwrap();
     }
 
     fn peek(&mut self) -> i32 {
         self.transfer_if_needed();
-        return *self.read_stack.last().unwrap()
+        return *self.read_stack.last().unwrap();
     }
 
     fn empty(&self) -> bool {
-        return self.read_stack.is_empty() && self.write_stack.is_empty()
+        return self.read_stack.is_empty() && self.write_stack.is_empty();
     }
 }
 
@@ -83,12 +82,12 @@ impl Solver for Solution {
 
     fn solve(mut self) {
         let mut queue = MyQueue::new();
-        for command in self.input{
+        for command in self.input {
             match command {
                 Command::Push(elem) => {
                     queue.push(elem);
                     self.solution.push(CommandResult::Push)
-                },
+                }
                 Command::Pop => self.solution.push(CommandResult::Pop(queue.pop())),
                 Command::Peek => self.solution.push(CommandResult::Peek(queue.peek())),
                 Command::Empty => self.solution.push(CommandResult::Empty(queue.empty())),

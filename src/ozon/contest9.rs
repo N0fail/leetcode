@@ -5,19 +5,25 @@ use std::io::prelude::*;
 use std::path::Path;
 
 #[derive(Debug)]
-pub struct Solution{
+pub struct Solution {
     inputs: Vec<String>,
     results: Vec<String>,
 }
 
 pub fn is_possible(_events: String) -> bool {
-    return true
+    return true;
 }
 
 impl Solver for Solution {
     fn read_inputs() -> Self {
         let mut inputs: Vec<String> = Vec::new();
-        for (_, line) in read_to_string(Self::get_input_filename()).unwrap().lines().skip(1).enumerate().filter(|(idx,_)| idx % 2 != 0) {
+        for (_, line) in read_to_string(Self::get_input_filename())
+            .unwrap()
+            .lines()
+            .skip(1)
+            .enumerate()
+            .filter(|(idx, _)| idx % 2 != 0)
+        {
             inputs.push(line.to_string())
         }
 
@@ -53,6 +59,6 @@ impl Solver for Solution {
     }
 
     fn dump_example(&self, idx: usize) -> String {
-        return self.inputs[idx].clone()
+        return self.inputs[idx].clone();
     }
 }

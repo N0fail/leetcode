@@ -1,14 +1,17 @@
-use std::collections::HashSet;
 use super::Solver;
+use std::collections::HashSet;
 #[derive(Debug)]
-pub struct Solution{
+pub struct Solution {
     nums: Vec<String>,
     solution: String,
 }
 
 pub fn find_different_binary_string(nums: Vec<String>) -> String {
     // easy solution
-    let values: HashSet<_> = nums.iter().map(|s| u16::from_str_radix(s, 2).unwrap()).collect();
+    let values: HashSet<_> = nums
+        .iter()
+        .map(|s| u16::from_str_radix(s, 2).unwrap())
+        .collect();
     let ans = (0..u16::MAX).find(|num| !values.contains(num)).unwrap();
     let n = nums.len();
     format!("{ans:0n$b}")
@@ -23,10 +26,9 @@ pub fn find_different_binary_string(nums: Vec<String>) -> String {
 //     String::from_utf8(res).unwrap()
 // }
 
-
 impl Solver for Solution {
     fn read_inputs() -> Self {
-        let input = ["111","011","000"];
+        let input = ["111", "011", "000"];
         return Solution {
             nums: input.map(|s| String::from(s)).into_iter().collect(),
             solution: "".to_string(),

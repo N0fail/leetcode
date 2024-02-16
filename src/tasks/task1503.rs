@@ -1,7 +1,7 @@
 use super::Solver;
 
 #[derive(Debug)]
-pub struct Solution{
+pub struct Solution {
     n: i32,
     left: Vec<i32>,
     right: Vec<i32>,
@@ -10,18 +10,17 @@ pub struct Solution{
 
 pub fn get_last_moment(n: i32, left: Vec<i32>, right: Vec<i32>) -> i32 {
     left.into_iter()
-        .max().unwrap_or(0)
-        .max(right.into_iter()
-            .map(|x| n - x).max().unwrap_or(0)
-        )
+        .max()
+        .unwrap_or(0)
+        .max(right.into_iter().map(|x| n - x).max().unwrap_or(0))
 }
 
 impl Solver for Solution {
     fn read_inputs() -> Self {
         return Solution {
             n: 4,
-            left: vec![4,3],
-            right: vec![0,1],
+            left: vec![4, 3],
+            right: vec![0, 1],
             solution: -1,
         };
     }

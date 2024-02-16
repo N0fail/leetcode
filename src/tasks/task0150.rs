@@ -1,15 +1,14 @@
 use super::Solver;
 
-
 #[derive(Debug)]
-pub struct Solution{
+pub struct Solution {
     tokens: Vec<String>,
     solution: i32,
 }
 
 pub fn eval_rpn(tokens: Vec<String>) -> i32 {
     let mut stack: Vec<i32> = vec![];
-    for token in &tokens{
+    for token in &tokens {
         match token.parse::<i32>() {
             Ok(number) => stack.push(number),
             Err(_) => {
@@ -17,20 +16,22 @@ pub fn eval_rpn(tokens: Vec<String>) -> i32 {
                 let a = stack.pop().unwrap();
                 let c = token.chars().next().unwrap();
                 match c {
-                    '+' => stack.push(a+b),
-                    '-' => stack.push(a-b),
-                    '*' => stack.push(a*b),
-                    '/' => stack.push(a/b),
+                    '+' => stack.push(a + b),
+                    '-' => stack.push(a - b),
+                    '*' => stack.push(a * b),
+                    '/' => stack.push(a / b),
                     _ => {}
                 }
             }
         }
     }
-    return stack.pop().unwrap()
+    return stack.pop().unwrap();
 }
 impl Solver for Solution {
     fn read_inputs() -> Self {
-        let input = vec!["10","6","9","3","+","-11","*","/","*","17","+","5","+"];
+        let input = vec![
+            "10", "6", "9", "3", "+", "-11", "*", "/", "*", "17", "+", "5", "+",
+        ];
         let mut tokens: Vec<String> = vec![];
         tokens.reserve(input.len());
         for s in input {

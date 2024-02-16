@@ -1,7 +1,7 @@
 use super::Solver;
 
 #[derive(Debug)]
-pub struct Solution{
+pub struct Solution {
     s: String,
     solution: i32,
 }
@@ -12,15 +12,18 @@ pub fn first_uniq_char(s: String) -> i32 {
     s.chars()
         .map(|c| c as usize - 'a' as usize)
         .enumerate()
-        .fold([NOT_PRESENT;26], |mut array, (idx, c)| {
+        .fold([NOT_PRESENT; 26], |mut array, (idx, c)| {
             array[c] = match array[c] {
                 NOT_PRESENT => idx as i32,
                 _ => DUPLICATE,
             };
             array
         })
-        .iter().copied().filter(|x| *x != NOT_PRESENT && *x != DUPLICATE)
-        .min().unwrap_or(-1)
+        .iter()
+        .copied()
+        .filter(|x| *x != NOT_PRESENT && *x != DUPLICATE)
+        .min()
+        .unwrap_or(-1)
 }
 
 impl Solver for Solution {

@@ -1,13 +1,13 @@
-use std::cmp::Ordering;
 use super::Solver;
+use std::cmp::Ordering;
 // todo This does not work, should use straightforward hashmap solution
 #[derive(Debug)]
-pub struct Solution{
+pub struct Solution {
     input: Vec<String>,
     solution: Vec<Vec<i32>>,
 }
 
-struct InpWord{
+struct InpWord {
     word: String,
     position: usize,
 }
@@ -49,11 +49,11 @@ pub fn palindrome_pairs(words: Vec<String>) -> Vec<Vec<i32>> {
     orig_list.reserve(words.len());
     reverse_list.reserve(words.len());
     for (position, word) in words.iter().enumerate() {
-        orig_list.push(InpWord{
+        orig_list.push(InpWord {
             word: word.clone(),
             position,
         });
-        reverse_list.push(InpWord{
+        reverse_list.push(InpWord {
             word: word.chars().rev().collect::<String>(),
             position,
         })
@@ -63,12 +63,15 @@ pub fn palindrome_pairs(words: Vec<String>) -> Vec<Vec<i32>> {
 
     let mut result: Vec<Vec<i32>> = vec![];
     for orig_word in &orig_list {
-        for reverse_word in &reverse_list{
+        for reverse_word in &reverse_list {
             if orig_word.position == reverse_word.position {
                 continue;
             }
-            if reverse_word.word.starts_with(&orig_word.word){
-                result.push(vec![orig_word.position as i32, reverse_word.position as i32]);
+            if reverse_word.word.starts_with(&orig_word.word) {
+                result.push(vec![
+                    orig_word.position as i32,
+                    reverse_word.position as i32,
+                ]);
             } else {
                 break;
             }
@@ -80,7 +83,7 @@ pub fn palindrome_pairs(words: Vec<String>) -> Vec<Vec<i32>> {
 
 impl Solver for Solution {
     fn read_inputs() -> Self {
-        let inp = ["a","ab"];
+        let inp = ["a", "ab"];
         let mut input: Vec<String> = vec![];
         input.reserve(inp.len());
         for s in inp {

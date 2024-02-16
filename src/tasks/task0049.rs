@@ -1,7 +1,7 @@
-use std::collections::HashMap;
 use super::Solver;
+use std::collections::HashMap;
 #[derive(Debug)]
-pub struct Solution{
+pub struct Solution {
     strs: Vec<String>,
     solution: Vec<Vec<String>>,
 }
@@ -74,13 +74,20 @@ pub struct Solution{
 
 pub fn group_anagrams(strs: Vec<String>) -> Vec<Vec<String>> {
     // using hashmap and iterators 12ms
-    let mut encoded: HashMap<[usize;26], Vec<String>> = HashMap::new();
-    let encode = |s: &String| s.chars().fold([0usize;26], |mut enc, c| {enc[c as usize - b'a' as usize] += 1; enc});
+    let mut encoded: HashMap<[usize; 26], Vec<String>> = HashMap::new();
+    let encode = |s: &String| {
+        s.chars().fold([0usize; 26], |mut enc, c| {
+            enc[c as usize - b'a' as usize] += 1;
+            enc
+        })
+    };
     strs.into_iter().for_each(|s| {
         let enc = encode(&s);
         match encoded.get_mut(&enc) {
-            None => {encoded.insert(enc, vec![s]);},
-            Some(v) => v.push(s)
+            None => {
+                encoded.insert(enc, vec![s]);
+            }
+            Some(v) => v.push(s),
         };
     });
     // encoded.iter().map(|(k, v)| v.clone()).collect() this is 16 ms
@@ -89,7 +96,7 @@ pub fn group_anagrams(strs: Vec<String>) -> Vec<Vec<String>> {
 
 impl Solver for Solution {
     fn read_inputs() -> Self {
-        let input = ["eat","tea","tan","ate","nat","bat"];
+        let input = ["eat", "tea", "tan", "ate", "nat", "bat"];
         return Solution {
             strs: input.map(|s| String::from(s)).into_iter().collect(),
             solution: vec![],

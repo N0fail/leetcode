@@ -1,11 +1,10 @@
 use super::Solver;
 
 #[derive(Debug)]
-pub struct Solution{
+pub struct Solution {
     arr: Vec<i32>,
     solution: i32,
 }
-
 
 pub fn longest_mountain(arr: Vec<i32>) -> i32 {
     let mut left = 0;
@@ -13,17 +12,17 @@ pub fn longest_mountain(arr: Vec<i32>) -> i32 {
     let mut result = 0;
 
     loop {
-        while left + 2 < n && arr[left] >= arr[left+1] {
+        while left + 2 < n && arr[left] >= arr[left + 1] {
             left += 1;
         }
 
         let mut peak = left;
-        while peak + 1 < n && arr[peak] < arr[peak+1] {
+        while peak + 1 < n && arr[peak] < arr[peak + 1] {
             peak += 1;
         }
 
         let mut right = peak;
-        while right + 1 < n && arr[right] > arr[right+1] {
+        while right + 1 < n && arr[right] > arr[right + 1] {
             right += 1
         }
 
@@ -33,21 +32,21 @@ pub fn longest_mountain(arr: Vec<i32>) -> i32 {
         left = right;
 
         if left + 2 >= n {
-            break
+            break;
         }
     }
 
     if result < 3 {
-        return 0
+        return 0;
     }
 
-    return result as i32
+    return result as i32;
 }
 
 impl Solver for Solution {
     fn read_inputs() -> Self {
         return Solution {
-            arr: vec![4,3,4,3,2],
+            arr: vec![4, 3, 4, 3, 2],
             solution: 0,
         };
     }

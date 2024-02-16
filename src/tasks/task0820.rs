@@ -1,7 +1,7 @@
 use super::Solver;
 
 #[derive(Debug)]
-pub struct Solution{
+pub struct Solution {
     words: Vec<String>,
     solution: i32,
 }
@@ -13,12 +13,14 @@ pub fn minimum_length_encoding(words: Vec<String>) -> i32 {
     }
     rev_words.sort();
 
-    rev_words.windows(2).fold(rev_words[0].len() + 1, |res, lr| {
-        if lr[1].starts_with(&lr[0]){
-            return res - lr[0].len() + lr[1].len();
-        }
-        return res + lr[1].len() + 1;
-    }) as i32
+    rev_words
+        .windows(2)
+        .fold(rev_words[0].len() + 1, |res, lr| {
+            if lr[1].starts_with(&lr[0]) {
+                return res - lr[0].len() + lr[1].len();
+            }
+            return res + lr[1].len() + 1;
+        }) as i32
 }
 
 impl Solver for Solution {

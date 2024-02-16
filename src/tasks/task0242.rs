@@ -1,14 +1,20 @@
 use super::Solver;
 #[derive(Debug)]
-pub struct Solution{
+pub struct Solution {
     s: String,
     t: String,
     solution: bool,
 }
 
 pub fn is_anagram(s: String, t: String) -> bool {
-    let mut res = s.as_bytes().iter().fold([0;26],|mut res, b| {res[(*b - b'a') as usize] += 1; res});
-    res = t.as_bytes().iter().fold(res,|mut res, b| {res[(*b - b'a') as usize] -= 1; res});
+    let mut res = s.as_bytes().iter().fold([0; 26], |mut res, b| {
+        res[(*b - b'a') as usize] += 1;
+        res
+    });
+    res = t.as_bytes().iter().fold(res, |mut res, b| {
+        res[(*b - b'a') as usize] -= 1;
+        res
+    });
     res.iter().all(|x| *x == 0)
 }
 

@@ -1,6 +1,6 @@
 use super::Solver;
 #[derive(Debug)]
-pub struct Solution{
+pub struct Solution {
     arr: Vec<i32>,
     solution: i32,
 }
@@ -30,7 +30,7 @@ pub fn sum_subarray_mins(arr: Vec<i32>) -> i32 {
         }
     }
 
-    for idx in (0..arr.len()-1).rev() {
+    for idx in (0..arr.len() - 1).rev() {
         let mut next_max_idx = idx + 1;
         loop {
             if arr[idx] > arr[next_max_idx] {
@@ -65,7 +65,7 @@ pub fn sum_subarray_mins(arr: Vec<i32>) -> i32 {
 impl Solver for Solution {
     fn read_inputs() -> Self {
         return Solution {
-            arr: vec![71,55,82,55],
+            arr: vec![71, 55, 82, 55],
             solution: -1,
         };
     }
