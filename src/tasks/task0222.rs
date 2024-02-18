@@ -10,11 +10,7 @@ pub struct Solution {
 }
 
 impl Solution {
-    pub fn is_schema_valid(
-        root: Option<Rc<RefCell<TreeNode>>>,
-        schema: i32,
-        mut height: usize,
-    ) -> bool {
+    pub fn is_schema_valid(root: Option<Rc<RefCell<TreeNode>>>, schema: i32, mut height: usize) -> bool {
         if let Some(r) = root {
             if height == 0 {
                 return true;

@@ -91,10 +91,8 @@ pub fn maximum_score(nums: Vec<i32>, multipliers: Vec<i32>) -> i32 {
     for total in (0..m).rev() {
         for left_picked in (0..=total).rev() {
             let right_picked = total - left_picked;
-            let left =
-                nums[left_picked] * multipliers[total] + cache[left_picked + 1][right_picked];
-            let right = nums[n - right_picked - 1] * multipliers[total]
-                + cache[left_picked][right_picked + 1];
+            let left = nums[left_picked] * multipliers[total] + cache[left_picked + 1][right_picked];
+            let right = nums[n - right_picked - 1] * multipliers[total] + cache[left_picked][right_picked + 1];
             cache[left_picked][right_picked] = left.max(right);
         }
     }

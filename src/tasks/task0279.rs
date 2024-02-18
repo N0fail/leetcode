@@ -21,10 +21,7 @@ pub fn num_squares(n: i32) -> i32 {
 
 impl Solver for Solution {
     fn read_inputs() -> Self {
-        return Solution {
-            n: 17,
-            solution: -1,
-        };
+        return Solution { n: 17, solution: -1 };
     }
 
     fn solve(mut self) {

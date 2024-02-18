@@ -47,12 +47,7 @@ pub fn min_sum_of_lengths(arr: Vec<i32>, target: i32) -> i32 {
         l -= 1
     }
 
-    let res = pref
-        .into_iter()
-        .zip(suff.into_iter())
-        .map(|(p, s)| p + s)
-        .min()
-        .unwrap();
+    let res = pref.into_iter().zip(suff.into_iter()).map(|(p, s)| p + s).min().unwrap();
 
     if res > n {
         return -1;

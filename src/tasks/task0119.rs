@@ -12,9 +12,7 @@ pub fn get_row(row_index: i32) -> Vec<i32> {
     for row_num in 1..row_index + 1 {
         let mut new_row = Vec::with_capacity(row_num);
         new_row.push(1);
-        prev_row
-            .windows(2)
-            .for_each(|lr| new_row.push(lr[0] + lr[1]));
+        prev_row.windows(2).for_each(|lr| new_row.push(lr[0] + lr[1]));
         new_row.push(1);
         prev_row = new_row;
     }

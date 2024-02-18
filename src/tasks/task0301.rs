@@ -24,19 +24,10 @@ fn build_stack(s: &[u8]) -> Vec<u8> {
     stack
 }
 
-fn dfs(
-    bytes: &mut [u8; 25],
-    l_to_delete: usize,
-    r_to_delete: usize,
-    cur_idx: usize,
-    n: usize,
-    res: &mut HashSet<String>,
-) {
+fn dfs(bytes: &mut [u8; 25], l_to_delete: usize, r_to_delete: usize, cur_idx: usize, n: usize, res: &mut HashSet<String>) {
     if l_to_delete == 0 && r_to_delete == 0 {
         if build_stack(&bytes[..n]).is_empty() {
-            res.insert(
-                String::from_utf8(bytes.iter().filter(|b| **b != 0).map(|x| *x).collect()).unwrap(),
-            );
+            res.insert(String::from_utf8(bytes.iter().filter(|b| **b != 0).map(|x| *x).collect()).unwrap());
         }
         return;
     }

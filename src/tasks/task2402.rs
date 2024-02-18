@@ -20,16 +20,10 @@ pub fn most_booked(n: i32, mut meetings: Vec<Vec<i32>>) -> i32 {
             }
         }
         res[min_idx] += 1;
-        end_at_by_room[min_idx] =
-            meeting[1] as i64 + 0.max(end_at_by_room[min_idx] - meeting[0] as i64);
+        end_at_by_room[min_idx] = meeting[1] as i64 + 0.max(end_at_by_room[min_idx] - meeting[0] as i64);
     }
 
-    res.into_iter()
-        .enumerate()
-        .rev()
-        .max_by(|a, b| a.1.cmp(&b.1))
-        .unwrap()
-        .0 as i32
+    res.into_iter().enumerate().rev().max_by(|a, b| a.1.cmp(&b.1)).unwrap().0 as i32
 }
 
 impl Solver for Solution {

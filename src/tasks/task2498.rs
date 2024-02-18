@@ -25,9 +25,9 @@ pub struct Solution {
 
 pub fn max_jump(stones: Vec<i32>) -> i32 {
     // 3ms
-    stones.windows(3).fold(stones[1] - stones[0], |res, elems| {
-        res.max(elems[2] - elems[0])
-    })
+    stones
+        .windows(3)
+        .fold(stones[1] - stones[0], |res, elems| res.max(elems[2] - elems[0]))
 }
 
 impl Solver for Solution {

@@ -12,14 +12,12 @@ pub fn full_bloom_flowers(flowers: Vec<Vec<i32>>, people: Vec<i32>) -> Vec<i32> 
     let mut ends: Vec<_> = flowers.iter().map(|x| x[1]).collect();
     starts.sort();
     ends.sort();
-    people
-        .iter()
-        .fold(Vec::with_capacity(people.len()), |mut res, x| {
-            let amount_starts = starts.partition_point(|start| start <= x);
-            let amount_ends = ends.partition_point(|end| end < x);
-            res.push((amount_starts - amount_ends) as i32);
-            res
-        })
+    people.iter().fold(Vec::with_capacity(people.len()), |mut res, x| {
+        let amount_starts = starts.partition_point(|start| start <= x);
+        let amount_ends = ends.partition_point(|end| end < x);
+        res.push((amount_starts - amount_ends) as i32);
+        res
+    })
 }
 
 impl Solver for Solution {
@@ -92,9 +90,8 @@ impl Solver for Solution {
                 res
             }),
             people: vec![
-                19, 17, 42, 36, 43, 42, 25, 35, 31, 21, 49, 14, 1, 4, 24, 12, 38, 48, 33, 36, 37,
-                8, 45, 50, 27, 20, 45, 42, 12, 5, 32, 41, 16, 23, 30, 29, 1, 37, 16, 42, 43, 5, 50,
-                6, 49, 22, 34, 24, 6,
+                19, 17, 42, 36, 43, 42, 25, 35, 31, 21, 49, 14, 1, 4, 24, 12, 38, 48, 33, 36, 37, 8, 45, 50, 27, 20, 45, 42, 12,
+                5, 32, 41, 16, 23, 30, 29, 1, 37, 16, 42, 43, 5, 50, 6, 49, 22, 34, 24, 6,
             ],
             solution: vec![],
         };

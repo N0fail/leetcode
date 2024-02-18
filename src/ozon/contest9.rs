@@ -27,10 +27,7 @@ impl Solver for Solution {
             inputs.push(line.to_string())
         }
 
-        return Solution {
-            inputs,
-            results: vec![],
-        };
+        return Solution { inputs, results: vec![] };
     }
 
     fn solve(&mut self) {

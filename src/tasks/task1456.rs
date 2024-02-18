@@ -12,18 +12,15 @@ pub fn max_vowels(s: String, k: i32) -> i32 {
     let is_vowels = |c| x.clone().any(|el| el == c);
     let mut best = s[..k].chars().filter(|c| is_vowels(*c)).count();
     let mut cur = best;
-    s[..s.len() - k]
-        .chars()
-        .zip(s[k..].chars())
-        .for_each(|(l_char, r_char)| {
-            if is_vowels(l_char) {
-                cur -= 1;
-            }
-            if is_vowels(r_char) {
-                cur += 1;
-            }
-            best = best.max(cur)
-        });
+    s[..s.len() - k].chars().zip(s[k..].chars()).for_each(|(l_char, r_char)| {
+        if is_vowels(l_char) {
+            cur -= 1;
+        }
+        if is_vowels(r_char) {
+            cur += 1;
+        }
+        best = best.max(cur)
+    });
     best as i32
 }
 

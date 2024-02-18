@@ -70,10 +70,7 @@ pub fn image_smoother(mut img: Vec<Vec<i32>>) -> Vec<Vec<i32>> {
 impl Solver for Solution {
     fn read_inputs() -> Self {
         return Solution {
-            img: [[1, 1, 1], [1, 0, 1], [1, 1, 1]]
-                .into_iter()
-                .map(|x| Vec::from(x))
-                .collect(),
+            img: [[1, 1, 1], [1, 0, 1], [1, 1, 1]].into_iter().map(|x| Vec::from(x)).collect(),
             solution: vec![],
         };
     }

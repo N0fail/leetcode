@@ -28,9 +28,7 @@ impl Solution {
 
 impl Solver for Solution {
     fn read_inputs() -> Self {
-        let input = vec![
-            4, 1, 6, 0, 2, 5, 7, NULL, NULL, NULL, 3, NULL, NULL, NULL, 8,
-        ];
+        let input = vec![4, 1, 6, 0, 2, 5, 7, NULL, NULL, NULL, 3, NULL, NULL, NULL, 8];
         return Solution {
             root: build_tree(&input, 0),
             solution: None,

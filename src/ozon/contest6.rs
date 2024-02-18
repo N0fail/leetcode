@@ -80,16 +80,9 @@ impl Solver for Solution {
         let mut inputs: Vec<Vec<Vec<u8>>> = Vec::new();
         let mut lines_count: usize = 0;
         let mut matrix: Vec<Vec<u8>> = Vec::new();
-        for line in read_to_string(Self::get_input_filename())
-            .unwrap()
-            .lines()
-            .skip(1)
-        {
+        for line in read_to_string(Self::get_input_filename()).unwrap().lines().skip(1) {
             if lines_count == 0 {
-                let x = line
-                    .split(" ")
-                    .map(|x| x.parse().unwrap())
-                    .collect::<Vec<usize>>();
+                let x = line.split(" ").map(|x| x.parse().unwrap()).collect::<Vec<usize>>();
                 lines_count = x[0];
                 matrix = Vec::new();
             } else {
@@ -101,10 +94,7 @@ impl Solver for Solution {
             }
         }
 
-        return Solution {
-            inputs,
-            results: vec![],
-        };
+        return Solution { inputs, results: vec![] };
     }
 
     fn solve(&mut self) {
@@ -124,9 +114,7 @@ impl Solver for Solution {
         };
 
         for result in &self.results {
-            output_file
-                .write(format!("{} {}\n", result.0, result.1).as_bytes())
-                .unwrap();
+            output_file.write(format!("{} {}\n", result.0, result.1).as_bytes()).unwrap();
         }
     }
 

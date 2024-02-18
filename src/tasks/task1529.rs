@@ -12,12 +12,10 @@ pub fn min_flips(target: String) -> i32 {
         '1' => 1,
         _ => 0,
     };
-    vec_chars
-        .windows(2)
-        .fold(res, |res, lr| match lr[0] == lr[1] {
-            true => res,
-            false => res + 1,
-        })
+    vec_chars.windows(2).fold(res, |res, lr| match lr[0] == lr[1] {
+        true => res,
+        false => res + 1,
+    })
 }
 
 impl Solver for Solution {

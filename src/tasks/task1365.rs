@@ -9,15 +9,13 @@ pub fn smaller_numbers_than_current(nums: Vec<i32>) -> Vec<i32> {
     let mut tmp: Vec<_> = nums.clone().into_iter().enumerate().collect();
     tmp.sort_by(|a, b| a.1.cmp(&b.1));
     let mut count = 0;
-    tmp.windows(2)
-        .enumerate()
-        .fold(vec![0; nums.len()], |mut res, (idx, lr)| {
-            if lr[0].1 != lr[1].1 {
-                count = idx as i32 + 1;
-            }
-            res[lr[1].0] = count;
-            res
-        })
+    tmp.windows(2).enumerate().fold(vec![0; nums.len()], |mut res, (idx, lr)| {
+        if lr[0].1 != lr[1].1 {
+            count = idx as i32 + 1;
+        }
+        res[lr[1].0] = count;
+        res
+    })
 }
 
 impl Solver for Solution {

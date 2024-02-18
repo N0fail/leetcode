@@ -40,11 +40,7 @@ pub trait Solver {
         for (test_num, (output, expected)) in read_to_string(Self::get_output_filename())
             .unwrap()
             .lines()
-            .zip(
-                read_to_string(Self::get_expected_filename())
-                    .unwrap()
-                    .lines(),
-            )
+            .zip(read_to_string(Self::get_expected_filename()).unwrap().lines())
             .enumerate()
         {
             if output != expected {
@@ -62,9 +58,7 @@ pub trait Solver {
                     .unwrap();
             } else {
                 compare_file
-                    .write(
-                        format!("OK: {} == {}, test #{}\n", output, expected, test_num).as_bytes(),
-                    )
+                    .write(format!("OK: {} == {}, test #{}\n", output, expected, test_num).as_bytes())
                     .unwrap();
             }
         }

@@ -46,10 +46,7 @@ impl CharsCount {
     }
 
     fn contains(&self, other: &Self) -> bool {
-        self.count
-            .iter()
-            .zip(other.count.iter())
-            .all(|(my, other)| *my >= *other)
+        self.count.iter().zip(other.count.iter()).all(|(my, other)| *my >= *other)
     }
 }
 

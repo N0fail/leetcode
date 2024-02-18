@@ -10,21 +10,11 @@ pub fn sort_vowels(s: String) -> String {
     // sort 10 ms
     let vowels = b"aeiouAEIOU";
     let s = s.as_bytes().iter().copied().collect::<Vec<_>>();
-    let mut v = s
-        .iter()
-        .copied()
-        .filter(|x| vowels.contains(x))
-        .collect::<Vec<_>>();
+    let mut v = s.iter().copied().filter(|x| vowels.contains(x)).collect::<Vec<_>>();
     v.sort_unstable_by(|a, b| b.cmp(a));
     String::from_utf8(
         s.into_iter()
-            .map(|x| {
-                if vowels.contains(&x) {
-                    v.pop().unwrap()
-                } else {
-                    x
-                }
-            })
+            .map(|x| if vowels.contains(&x) { v.pop().unwrap() } else { x })
             .collect::<Vec<_>>(),
     )
     .unwrap()

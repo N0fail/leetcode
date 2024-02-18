@@ -8,10 +8,7 @@ pub struct Solution {
 
 pub fn find_different_binary_string(nums: Vec<String>) -> String {
     // easy solution
-    let values: HashSet<_> = nums
-        .iter()
-        .map(|s| u16::from_str_radix(s, 2).unwrap())
-        .collect();
+    let values: HashSet<_> = nums.iter().map(|s| u16::from_str_radix(s, 2).unwrap()).collect();
     let ans = (0..u16::MAX).find(|num| !values.contains(num)).unwrap();
     let n = nums.len();
     format!("{ans:0n$b}")

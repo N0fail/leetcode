@@ -29,18 +29,13 @@ pub fn eval_rpn(tokens: Vec<String>) -> i32 {
 }
 impl Solver for Solution {
     fn read_inputs() -> Self {
-        let input = vec![
-            "10", "6", "9", "3", "+", "-11", "*", "/", "*", "17", "+", "5", "+",
-        ];
+        let input = vec!["10", "6", "9", "3", "+", "-11", "*", "/", "*", "17", "+", "5", "+"];
         let mut tokens: Vec<String> = vec![];
         tokens.reserve(input.len());
         for s in input {
             tokens.push(String::from(s));
         }
-        return Solution {
-            tokens,
-            solution: 0,
-        };
+        return Solution { tokens, solution: 0 };
     }
 
     fn solve(mut self) {

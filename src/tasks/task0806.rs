@@ -26,8 +26,7 @@ impl Solver for Solution {
     fn read_inputs() -> Self {
         return Solution {
             widths: vec![
-                4, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10,
-                10, 10, 10, 10, 10,
+                4, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10,
             ],
             s: "bbbcccdddaaa".to_string(),
             solution: vec![],

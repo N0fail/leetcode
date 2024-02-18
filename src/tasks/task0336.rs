@@ -68,10 +68,7 @@ pub fn palindrome_pairs(words: Vec<String>) -> Vec<Vec<i32>> {
                 continue;
             }
             if reverse_word.word.starts_with(&orig_word.word) {
-                result.push(vec![
-                    orig_word.position as i32,
-                    reverse_word.position as i32,
-                ]);
+                result.push(vec![orig_word.position as i32, reverse_word.position as i32]);
             } else {
                 break;
             }
@@ -89,10 +86,7 @@ impl Solver for Solution {
         for s in inp {
             input.push(String::from(s));
         }
-        return Solution {
-            input,
-            solution: vec![],
-        };
+        return Solution { input, solution: vec![] };
     }
 
     fn solve(mut self) {

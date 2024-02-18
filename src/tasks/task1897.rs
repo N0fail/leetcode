@@ -23,10 +23,7 @@ pub fn make_equal(words: Vec<String>) -> bool {
 impl Solver for Solution {
     fn read_inputs() -> Self {
         return Solution {
-            words: ["abc", "aabc", "bc"]
-                .into_iter()
-                .map(|x| x.to_string())
-                .collect(),
+            words: ["abc", "aabc", "bc"].into_iter().map(|x| x.to_string()).collect(),
             solution: false,
         };
     }

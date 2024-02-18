@@ -62,18 +62,10 @@ impl Solver for Solution {
             .enumerate()
             .filter(|(idx, _)| idx % 2 != 0)
         {
-            inputs.push(
-                line.to_string()
-                    .split(" ")
-                    .map(|x| x.parse().unwrap())
-                    .collect(),
-            )
+            inputs.push(line.to_string().split(" ").map(|x| x.parse().unwrap()).collect())
         }
 
-        return Solution {
-            inputs,
-            results: vec![],
-        };
+        return Solution { inputs, results: vec![] };
     }
 
     fn solve(&mut self) {
@@ -94,24 +86,13 @@ impl Solver for Solution {
 
         for result in &self.results {
             output_file
-                .write(
-                    result
-                        .iter()
-                        .map(|x| x.to_string())
-                        .collect::<Vec<_>>()
-                        .join(" ")
-                        .as_bytes(),
-                )
+                .write(result.iter().map(|x| x.to_string()).collect::<Vec<_>>().join(" ").as_bytes())
                 .unwrap();
             output_file.write("\n".as_bytes()).unwrap();
         }
     }
 
     fn dump_example(&self, idx: usize) -> String {
-        return self.inputs[idx]
-            .iter()
-            .map(|x| x.to_string())
-            .collect::<Vec<_>>()
-            .join(" ");
+        return self.inputs[idx].iter().map(|x| x.to_string()).collect::<Vec<_>>().join(" ");
     }
 }

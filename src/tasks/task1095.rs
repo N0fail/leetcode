@@ -29,10 +29,7 @@ fn find_in_mountain_array(target: i32, mountain_arr: &MountainArray) -> i32 {
     let len = mountain_arr.length();
     let mut left = CacheValue { idx: 1, val: -1 };
 
-    let mut right = CacheValue {
-        idx: len - 2,
-        val: -1,
-    };
+    let mut right = CacheValue { idx: len - 2, val: -1 };
 
     let peak = loop {
         let peak = CacheValue {

@@ -29,9 +29,7 @@ pub fn rob(nums: Vec<i32>) -> i32 {
     // prev[1] - element i-2
     // prev[2] - element i-1
     nums.into_iter()
-        .fold([0, 0, 0], |prev, x| {
-            [prev[1], prev[2], x + prev[1].max(prev[0])]
-        })
+        .fold([0, 0, 0], |prev, x| [prev[1], prev[2], x + prev[1].max(prev[0])])
         .into_iter()
         .max()
         .unwrap()

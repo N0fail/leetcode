@@ -115,10 +115,7 @@ pub fn find_least_num_of_unique_ints(arr: Vec<i32>, mut k: i32) -> i32 {
     // 13 ms
     let mut counts: HashMap<i32, i32> = HashMap::new();
     for num in arr {
-        counts
-            .entry(num)
-            .and_modify(|count| *count += 1)
-            .or_insert(1);
+        counts.entry(num).and_modify(|count| *count += 1).or_insert(1);
     }
     let mut counts_vec = counts.into_values().collect::<Vec<_>>();
     counts_vec.sort_unstable();
