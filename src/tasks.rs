@@ -58,6 +58,7 @@ pub mod task1657;
 pub mod task1770;
 pub mod task1793;
 pub mod task1846;
+pub mod task1881;
 pub mod task1897;
 pub mod task1930;
 pub mod task1980;
@@ -74,7 +75,7 @@ pub mod task2785;
 pub mod task2966;
 pub mod task2971;
 
-pub use task0268 as current;
+pub use task1881 as current;
 
 pub trait Solver {
     fn read_inputs() -> Self;
