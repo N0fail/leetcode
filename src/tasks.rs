@@ -4,6 +4,7 @@ use std::rc::Rc;
 
 pub mod task0049;
 pub mod task0076;
+pub mod task0100;
 pub mod task0119;
 pub mod task0150;
 pub mod task0169;
@@ -91,7 +92,7 @@ pub mod task2870;
 pub mod task2966;
 pub mod task2971;
 
-pub use task2709 as current;
+pub use task0100 as current;
 
 pub trait Solver {
     fn read_inputs() -> Self;
