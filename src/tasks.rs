@@ -27,6 +27,7 @@ pub mod task0518;
 pub mod task0521;
 pub mod task0538;
 pub mod task0542;
+pub mod task0543;
 pub mod task0557;
 pub mod task0647;
 pub mod task0661;
@@ -69,6 +70,7 @@ pub mod task1685;
 pub mod task1704;
 pub mod task1770;
 pub mod task1793;
+pub mod task1838;
 pub mod task1846;
 pub mod task1877;
 pub mod task1881;
@@ -93,8 +95,6 @@ pub mod task2849;
 pub mod task2870;
 pub mod task2966;
 pub mod task2971;
-pub mod task0543;
-pub mod task1838;
 
 pub use task1838 as current;
 

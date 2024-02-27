@@ -31,7 +31,7 @@ impl Solution {
 impl Solver for Solution {
     fn read_inputs() -> Self {
         return Solution {
-            root: build_tree(&vec![1,2,3,4,5], 0),
+            root: build_tree(&vec![1, 2, 3, 4, 5], 0),
             solution: 0,
         };
     }
@@ -48,11 +48,11 @@ mod test {
 
     #[test]
     fn ut_1() {
-        assert_eq!(Solution::diameter_of_binary_tree(build_tree(&vec![1,2,3,4,5], 0)), 3);
+        assert_eq!(Solution::diameter_of_binary_tree(build_tree(&vec![1, 2, 3, 4, 5], 0)), 3);
     }
 
     #[test]
     fn ut_2() {
-        assert_eq!(Solution::diameter_of_binary_tree(build_tree(&vec![1,2], 0)), 1);
+        assert_eq!(Solution::diameter_of_binary_tree(build_tree(&vec![1, 2], 0)), 1);
     }
 }
