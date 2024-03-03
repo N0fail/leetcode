@@ -2,6 +2,7 @@ use std::cell::RefCell;
 use std::fmt::{Debug, Display, Formatter};
 use std::rc::Rc;
 
+pub mod task0019;
 pub mod task0049;
 pub mod task0076;
 pub mod task0100;
@@ -103,7 +104,7 @@ pub mod task2870;
 pub mod task2966;
 pub mod task2971;
 
-pub use task0977 as current;
+pub use task0019 as current;
 
 pub trait Solver {
     fn read_inputs() -> Self;
@@ -167,12 +168,58 @@ pub fn build_tree(input: &Vec<i32>, cur_idx: usize) -> Option<Rc<RefCell<TreeNod
         return None;
     }
 
-    let new_node = create_node(input[cur_idx]);
+    let new_node = create_tree_node(input[cur_idx]);
     new_node.borrow_mut().left = build_tree(input, cur_idx * 2 + 1);
     new_node.borrow_mut().right = build_tree(input, cur_idx * 2 + 2);
     return Some(new_node);
 }
 
-pub fn create_node(val: i32) -> Rc<RefCell<TreeNode>> {
+pub fn create_tree_node(val: i32) -> Rc<RefCell<TreeNode>> {
     Rc::new(RefCell::new(TreeNode::new(val)))
+}
+
+#[derive(PartialEq, Eq, Clone, Debug)]
+pub struct ListNode {
+    pub val: i32,
+    pub next: Option<Box<ListNode>>,
+}
+
+impl ListNode {
+    #[inline]
+    fn new(val: i32) -> Self {
+        ListNode { next: None, val }
+    }
+    pub fn to_vec(&self) -> Vec<i32> {
+        let mut res = Vec::new();
+        res.push(self.val);
+        let mut p = self;
+        loop {
+            match &p.next {
+                None => break,
+                Some(node) => p = node.as_ref(),
+            }
+            res.push(p.val)
+        }
+        res
+    }
+}
+
+impl Display for ListNode {
+    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
+        self.to_vec().fmt(f)
+    }
+}
+
+pub fn build_list(input: &Vec<i32>) -> Option<Box<ListNode>> {
+    if input.len() == 0 {
+        return None;
+    }
+    let mut head = ListNode::new(input[0]);
+    let mut p = &mut head;
+    for v in &input[1..] {
+        let node = ListNode::new(*v);
+        p.next = Some(Box::new(node));
+        p = p.next.as_mut().unwrap();
+    }
+    Some(Box::new(head))
 }
